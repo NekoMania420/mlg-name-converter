@@ -1,0 +1,49 @@
+function randomPosition(w, h) {
+	do {
+		var randX = Math.floor(Math.random() * $(window).width());
+		var randY = Math.floor(Math.random() * $(window).height());
+	} while (randX + w / 5 > $(window).width() || randY + h / 5 > $(window).height());
+
+	return {top: randY - 100, left: randX};
+}
+
+function randomWidth() {
+	do {
+		var randW = Math.floor(Math.random() * 600);
+	} while (randW < 360);
+
+	return randW;
+}
+
+var elem = $('#mlg').find('div img');
+
+for (var i = 0; i < elem.length; i++) {
+	$(elem[i]).offset(randomPosition($(this).width(), $(this).height())).width(randomWidth()).css({ zIndex: Math.floor(Math.random() * elem.length) });
+}
+
+$('#output, .dim').hide();
+
+function convertName() {
+	var text = $('[name="name"]').val();
+	var lookup = ['420', '360', 'Noscope', 'Fazeoptic', 'MLG', 'Trickshot', 'Swag', 'Yolo'];
+	var replaceStr = [['A', '@'], ['a', '@'], ['E', '€'], ['e', '€'], ['I', '1'], ['i', '1'], ['O', '0'], ['o', '0'], ['K', 'Kz'], ['k', 'Kz'], ['N', 'Nz'], ['n', 'Nz'], ['S', '$'], ['s', '$'], [' ', '_']];
+
+	for (var i = 0; i < replaceStr.length; i++) {
+		var regex = new RegExp(replaceStr[i][0], 'g');
+		text = text.replace(regex, replaceStr[i][1]);
+	}
+
+	$('body').addClass('rainbow');
+	$('#output .result').text('xX' + lookup[Math.floor(Math.random() * lookup.length)] + '_' + text + '_' + lookup[Math.floor(Math.random() * lookup.length)] + 'Xx').addClass('rainbow-text');
+	$('#output, .dim').fadeIn();
+}
+
+function playSound() {
+	var audio = $('#sfx audio')[0];
+	var filename = ['smoke_weed_everyday', 'wombo_combo', 'illuminati'];
+	var rand = Math.floor(Math.random() * filename.length);
+	var path = 'assets/sounds/' + filename[rand] + '.ogg';
+
+	$('#sfx audio').attr('src', path);
+	audio.play();
+}
