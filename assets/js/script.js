@@ -26,7 +26,7 @@ $('#output, .dim').hide();
 function convertName() {
 	var text = $('[name="name"]').val();
 	var lookup = ['420', '360', 'Noscope', 'Fazeoptic', 'MLG', 'Trickshot', 'Swag', 'Yolo'];
-	var replaceStr = [['A', '@'], ['a', '@'], ['E', '€'], ['e', '€'], ['I', '1'], ['i', '1'], ['O', '0'], ['o', '0'], ['K', 'Kz'], ['k', 'Kz'], ['N', 'Nz'], ['n', 'Nz'], ['S', '$'], ['s', '$'], [' ', '_']];
+	var replaceStr = [['A', '@'], ['a', '@'], ['E', '€'], ['e', '€'], ['I', '1'], ['i', '1'], ['O', '0'], ['o', '0'], ['K', 'Kz'], ['k', 'Kz'], ['N', 'Nz'], ['n', 'Nz'], ['S', '$'], ['s', '$'], [' ', '_'], ['ย', 'E'], ['ง', 'J'], ['เ', 'L'], ['อ', 'o'], ['ร', 's'], ['ข', 'v'], ['ล', 'z'], ['ต', 'm'], ['ท', 'n'], ['น', 'u'], ['ะ', '='], ['แ', 'll'], ['พ', 'w'], ['ห', 'x'], ['า', '7'], ['ค', 'A'], ['ก', 'π'], ['บ', 'U'], ['ม', 'μ'], ['ศ', 'Á'], ['ว', 'ɔ'], ['โ', 'Γ'], ['ส', 'ź']];
 
 	for (var i = 0; i < replaceStr.length; i++) {
 		var regex = new RegExp(replaceStr[i][0], 'g');
@@ -36,6 +36,7 @@ function convertName() {
 	$('body').addClass('rainbow');
 	$('#output .result').text('xX' + lookup[Math.floor(Math.random() * lookup.length)] + '_' + text + '_' + lookup[Math.floor(Math.random() * lookup.length)] + 'Xx').addClass('rainbow-text');
 	$('#output, .dim').fadeIn();
+	playSound();
 }
 
 function playSound() {
@@ -47,3 +48,12 @@ function playSound() {
 	$('#sfx audio').attr('src', path);
 	audio.play();
 }
+
+$(document).ready(function() {
+	$('[name="name"]').focus();
+	$('[name="name"]').keypress(function(event) {
+		if (event.which == 13 && $(this).is(':focus')) {
+			convertName();
+		}
+	});
+});
