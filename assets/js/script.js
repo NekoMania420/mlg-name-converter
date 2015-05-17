@@ -43,9 +43,14 @@ function playSound() {
 	var audio = $('#sfx audio')[0];
 	var filename = ['smoke_weed_everyday', 'wombo_combo', 'illuminati'];
 	var rand = Math.floor(Math.random() * filename.length);
-	var path = 'assets/sounds/' + filename[rand] + '.ogg';
+	var path = 'assets/sounds/' + filename[rand] + '.mp3';
 
-	$('#sfx audio').attr('src', path);
+	$('#sfx audio source').attr({
+		src: path,
+		type: 'audio/mp3'
+	});
+
+	audio.load();
 	audio.play();
 }
 
