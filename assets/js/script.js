@@ -17,10 +17,13 @@ function randomWidth() {
 
 var elem = $('#mlg').find('div img');
 
-for (var i = 0; i < elem.length; i++) {
-	$(elem[i]).offset(randomPosition($(this).width(), $(this).height())).width(randomWidth()).css({ zIndex: Math.floor(Math.random() * elem.length) });
+function MLGRandom() {
+	for (var i = 0; i < elem.length; i++) {
+		$(elem[i]).offset(randomPosition($(this).width(), $(this).height())).width(randomWidth()).css({ zIndex: Math.floor(Math.random() * elem.length) });
+	}
 }
 
+MLGRandom();
 $('#output, .dim').hide();
 
 function convertName() {
@@ -60,5 +63,8 @@ $(document).ready(function() {
 		if (event.which == 13 && $(this).is(':focus')) {
 			convertName();
 		}
+	});
+	$(window).on('orientationchange', function(event) {
+		MLGRandom();
 	});
 });

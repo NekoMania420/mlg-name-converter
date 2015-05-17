@@ -7,7 +7,7 @@ body {
 }
 
 body, input, button {
-	font-family: cursive;
+	font-family: "Comic Sans MS", "HelveticaNeue", sans-serif;
 }
 
 body, button {
@@ -89,8 +89,9 @@ h1 {
 }
 
 .rainbow-text {
-	-webkit-animation: rainbow 1s step-end infinite;
-	animation: rainbow 1s step-end infinite;
+	-webkit-animation: rainbow 1s infinite;
+	-moz-animation: rainbow 1s infinite;
+	animation: rainbow 1s infinite;
 }
 
 footer {
